@@ -8,11 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dip4k/node-playlist/note-app"
+    "url": "https://github.com/dip4k/node-playlist/tree/master/note-app"
   },
-  "keywords": [
-    "Node"
-  ],
+  "keywords": ["Node"],
   "author": "dip4k",
   "license": "MIT",
   "dependencies": {

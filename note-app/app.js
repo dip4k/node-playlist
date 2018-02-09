@@ -7,8 +7,12 @@ var command = argv._[0];
 console.log(command);
 
 if (command === "add") {
-  console.log("adding notes");
-  notes.addNote(argv.title, argv.body);
+  var note = notes.addNote(argv.title, argv.body);
+  if (note) {
+    console.log(`--> note: Added \ntitle: ${note.title} body: ${note.body}`);
+  } else {
+    console.log("note title taken");
+  }
 } else if (command === "list") {
   console.log("Showing note list");
   notes.getAll();
