@@ -1,5 +1,3 @@
-const fs = require("fs");
-const _ = require("lodash");
 const argv = require("yargs").argv;
 const notes = require("./notes");
 
@@ -20,8 +18,12 @@ if (command === "add") {
   console.log("reading notes");
   notes.getNOte(argv.title);
 } else if (command === "remove") {
-  console.log("removing notes");
-  notes.removeNote(argv.title);
+  var noteRemoved = notes.removeNote(argv.title);
+  if (noteRemoved) {
+    console.log(`note removed`);
+  } else {
+    console.log("note not Found");
+  }
 } else {
   console.log("invalid command");
 }

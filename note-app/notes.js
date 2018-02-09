@@ -31,7 +31,10 @@ let addNote = (title, body) => {
 };
 
 let removeNote = title => {
-  console.log(`note with title ${title} is removed...`);
+  let notes = fetchNotes();
+  let newNotes = notes.filter(note => note.title !== title);
+  saveNotes(newNotes);
+  return notes.length !== newNotes.length;
 };
 
 let getNOte = title => {
