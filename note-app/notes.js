@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-var fetchNotes = () => {
+const fetchNotes = () => {
   try {
     // read already available notes from file
 
@@ -10,17 +10,17 @@ var fetchNotes = () => {
   }
 };
 
-var saveNotes = notes => {
+const saveNotes = notes => {
   fs.writeFileSync("note-data.json", JSON.stringify(notes));
 };
 
-let addNote = (title, body) => {
-  let notes = fetchNotes();
-  var note = { title, body };
+const addNote = (title, body) => {
+  const notes = fetchNotes();
+  const note = { title, body };
 
   // check for duplicates
 
-  let duplicateNote = notes.filter(note => note.title === title);
+  const duplicateNote = notes.filter(item => item.title === title);
   if (duplicateNote.length === 0) {
     // push new note to array and write to file
 
@@ -30,29 +30,29 @@ let addNote = (title, body) => {
   }
 };
 
-let removeNote = title => {
-  let notes = fetchNotes();
-  let newNotes = notes.filter(note => note.title !== title);
+const removeNote = title => {
+  const notes = fetchNotes();
+  const newNotes = notes.filter(note => note.title !== title);
   saveNotes(newNotes);
   return notes.length !== newNotes.length;
 };
 
-let getNOte = title => {
-  let notes = fetchNotes();
-  let note = notes.filter(note => note.title === title);
+const getNote = title => {
+  const notes = fetchNotes();
+  const note = notes.filter(item => item.title === title);
   if (note.length > 0) {
     return note;
   }
 };
-let getAll = () => {
-  let notes = fetchNotes();
-  if (notes.length > 0) {
-    return notes;
-  }
-};
+const getAll = () => fetchNotes();
+
+function logNotes(item) {
+  console.log(`--> title: ${item.title}  body: ${item.body}`);
+}
 module.exports = {
   addNote,
   removeNote,
-  getNOte,
-  getAll
+  getNote,
+  getAll,
+  logNotes
 };

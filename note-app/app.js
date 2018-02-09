@@ -1,41 +1,42 @@
 const argv = require("yargs").argv;
 const notes = require("./notes");
 
-var command = argv._[0];
+const command = argv._[0];
 console.log(command);
 
 if (command === "add") {
-  let note = notes.addNote(argv.title, argv.body);
+  const note = notes.addNote(argv.title, argv.body);
   if (note) {
-    console.log(`--> note: Added \ntitle: ${note.title} body: ${note.body}`);
+    console.log(`--> note: Added`);
+    notes.logNotes(note);
   } else {
     console.log("note title taken");
   }
 } else if (command === "list") {
-  let noteList = notes.getAll();
+  const noteList = notes.getAll();
   if (noteList) {
-    for (const item of noteList) {
-      console.log(`title: ${item.title}  body: ${item.body}`);
-    }
+    noteList.forEach(element => {
+      notes.logNotes(element);
+    });
   } else {
     console.log("Note not found");
   }
 } else if (command === "read") {
-  let note = notes.getNOte(argv.title);
+  const note = notes.getNote(argv.title);
   if (note) {
-    for (const item of note) {
-      console.log(`title: ${item.title}  body: ${item.body}`);
-    }
+    note.forEach(element => {
+      notes.logNotes(element);
+    });
   } else {
     console.log("note not Found..!");
   }
 } else if (command === "remove") {
-  let noteRemoved = notes.removeNote(argv.title);
+  const noteRemoved = notes.removeNote(argv.title);
   if (noteRemoved) {
-    console.log(`note removed`);
+    console.log(`note removed successfully...`);
   } else {
-    console.log("note not Found");
+    console.log("note not Found...!");
   }
 } else {
-  console.log("invalid command");
+  console.log("invalid command...");
 }
