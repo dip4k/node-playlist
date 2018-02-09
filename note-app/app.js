@@ -5,20 +5,32 @@ var command = argv._[0];
 console.log(command);
 
 if (command === "add") {
-  var note = notes.addNote(argv.title, argv.body);
+  let note = notes.addNote(argv.title, argv.body);
   if (note) {
     console.log(`--> note: Added \ntitle: ${note.title} body: ${note.body}`);
   } else {
     console.log("note title taken");
   }
 } else if (command === "list") {
-  console.log("Showing note list");
-  notes.getAll();
+  let noteList = notes.getAll();
+  if (noteList) {
+    for (const item of noteList) {
+      console.log(`title: ${item.title}  body: ${item.body}`);
+    }
+  } else {
+    console.log("Note not found");
+  }
 } else if (command === "read") {
-  console.log("reading notes");
-  notes.getNOte(argv.title);
+  let note = notes.getNOte(argv.title);
+  if (note) {
+    for (const item of note) {
+      console.log(`title: ${item.title}  body: ${item.body}`);
+    }
+  } else {
+    console.log("note not Found..!");
+  }
 } else if (command === "remove") {
-  var noteRemoved = notes.removeNote(argv.title);
+  let noteRemoved = notes.removeNote(argv.title);
   if (noteRemoved) {
     console.log(`note removed`);
   } else {

@@ -38,10 +38,17 @@ let removeNote = title => {
 };
 
 let getNOte = title => {
-  console.log(`Reading note with title ${title}...`);
+  let notes = fetchNotes();
+  let note = notes.filter(note => note.title === title);
+  if (note.length > 0) {
+    return note;
+  }
 };
 let getAll = () => {
-  console.log("returning all notes");
+  let notes = fetchNotes();
+  if (notes.length > 0) {
+    return notes;
+  }
 };
 module.exports = {
   addNote,
