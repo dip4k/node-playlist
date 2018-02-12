@@ -1,0 +1,16 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Simple weather app using google map api.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "dip4k",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.83.0",
+    "yargs": "^11.0.0"
+  }
+}
