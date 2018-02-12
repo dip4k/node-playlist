@@ -21,9 +21,11 @@ request(
   },
   (error, response, body) => {
     if (error) {
-      console.log(error);
-    } else {
-      // console.log(JSON.stringify(response, undefined, 2));
+      console.log("Unable to connect to Api Server...");
+    } else if (body.status === "ZERO_RESULTS") {
+      console.log("Entered Address is not valid");
+    } else if (body.status === "OK") {
+      // console.log(JSON.stringify(body, undefined, 2));
 
       console.log(`formatted address : ${body.results[0].formatted_address}`);
       console.log(
