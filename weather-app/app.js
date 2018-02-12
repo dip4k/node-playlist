@@ -17,21 +17,37 @@ const argv = yargs
   .help()
   .alias("help", "h").argv;
 
-geocode.geocodeAddress(argv.address, (errorMessage, results) => {
-  if (errorMessage) {
-    console.log(errorMessage);
-  } else {
-    weather.getWeatherResult(
-      ApiKey,
-      results.latitude,
-      results.longitude,
-      (errMessage, weatherResults) => {
-        if (errMessage) {
-          console.log(errMessage);
-        } else {
-          console.log(JSON.stringify(weatherResults, undefined, 2));
-        }
+// geocode.geocodeAddress(argv.address, (errorMessage, results) => {
+//   if (errorMessage) {
+//     console.log(errorMessage);
+//   } else {
+//     weather.getWeatherResult(
+//       ApiKey,
+//       results.latitude,
+//       results.longitude,
+//       (errMessage, weatherResults) => {
+//         if (errMessage) {
+//           console.log(errMessage);
+//         } else {
+//           console.log(JSON.stringify(weatherResults, undefined, 2));
+//         }
+//       }
+//     );
+//   }
+// });
+
+geocode.geocodeAddress(argv.address).then(
+  address => {
+    weather.getWeatherResult(ApiKey, address.latitude, address.longitude).then(
+      weatherResults => {
+        console.log(JSON.stringify(weatherResults, undefined, 2));
+      },
+      errmsg => {
+        console.log(errmsg);
       }
     );
+  },
+  errorMessage => {
+    console.log(errorMessage);
   }
-});
+);
