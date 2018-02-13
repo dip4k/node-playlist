@@ -10,6 +10,7 @@
   "author": "dip4k",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.17.1",
     "request": "^2.83.0",
     "yargs": "^11.0.0"
   }
