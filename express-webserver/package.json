@@ -4,8 +4,8 @@
   "description": "Simple web server using express",
   "main": "app.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js -e js,hbs"
+    "dev": "nodemon server.js -e js,hbs",
+    "start": "node server.js"
   },
   "keywords": ["node", "express", "server"],
   "author": "github.com/dip4k",
