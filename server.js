@@ -24,9 +24,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  res.render("coming-soon");
-});
+// app.use((req, res, next) => {
+//   res.render("coming-soon");
+// });
 
 app.use(express.static(path.resolve(`${__dirname}/public`)));
 
