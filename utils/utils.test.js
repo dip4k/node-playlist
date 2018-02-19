@@ -6,7 +6,6 @@ it("should add two numbers", () => {
     throw new Error(`Expected 33 but got ${res}.`);
   }
 });
-
 it("should square a number", () => {
   const res = utils.sqr(5);
   if (res !== 25) {
