@@ -8,3 +8,15 @@ module.exports.user = fullName => {
   user.lName = names[1];
   return user;
 };
+
+module.exports.asyncAdd = (a, b, cb) => {
+  setTimeout(() => {
+    cb(a + b);
+  }, 100);
+};
+
+module.exports.asyncSqr = (a, cb) => {
+  setTimeout(() => {
+    cb(a ** 2);
+  }, 100);
+};

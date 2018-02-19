@@ -11,6 +11,14 @@ it("should add two numbers", () => {
     .toBe(33)
     .toBeA("number");
 });
+
+it("should add two numbers asyn", done => {
+  utils.asyncAdd(4, 3, sum => {
+    expect(sum).toBe(7);
+    done();
+  });
+});
+
 it("should square a number", () => {
   const res = utils.sqr(5);
   expect(res).toBe(25);
@@ -18,6 +26,13 @@ it("should square a number", () => {
   // if (res !== 25) {
   //   throw new Error(`Expected (sqr of 5) 25 but got ${res}`);
   // }
+});
+
+it("should square a number asyn", done => {
+  utils.asyncSqr(4, sum => {
+    expect(sum).toBe(16);
+    done();
+  });
 });
 
 // it("should be some test", () => {
