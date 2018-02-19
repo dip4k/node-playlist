@@ -1,0 +1,23 @@
+{
+  "name": "node-playlist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha **/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dip4k/node-playlist.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dip4k/node-playlist/issues"
+  },
+  "homepage": "https://github.com/dip4k/node-playlist#readme",
+  "devDependencies": {
+    "mocha": "^5.0.1"
+  }
+}
