@@ -12,7 +12,11 @@
     "type": "git",
     "url": "git+https://github.com/dip4k/node-playlist.git"
   },
-  "keywords": ["node", "mocha", "testing"],
+  "keywords": [
+    "node",
+    "mocha",
+    "testing"
+  ],
   "author": "https://github.com/dip4k",
   "license": "ISC",
   "bugs": {
