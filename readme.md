@@ -16,3 +16,4 @@
 5.  [Quick Guide to mocha.js Test Driven Development (TDD) in node.js](https://github.com/ideaq/learn-mocha)
 6.  [Test a node restful-api with mocha and chai](https://scotch.io/tutorials/test-a-node-restful-api-with-mocha-and-chai)
 7.  [How to test JavaScript with Mocha — The Basics](https://codeburst.io/how-to-test-javascript-with-mocha-the-basics-80132324752e)
+8.  [Unit Test Your JavaScript Using Mocha and Chai](https://www.sitepoint.com/unit-test-javascript-mocha-chai/)
