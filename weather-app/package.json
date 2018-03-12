@@ -4,9 +4,9 @@
   "description": "Simple weather app using google map api.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
-  "keywords": [],
+  "keywords": ["node", "weather-api-example"],
   "author": "dip4k",
   "license": "ISC",
   "dependencies": {

@@ -7,7 +7,7 @@
 // console.log("end");
 
 const getUser = (id, callback) => {
-  const user = { id, name: "dip4k" };
+  const user = { id, name: 'dip4k' };
   setTimeout(() => {
     callback(user);
   }, 2000);

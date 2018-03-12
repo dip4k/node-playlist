@@ -1,4 +1,4 @@
-const request = require("request");
+const request = require('request');
 
 // function geocodeAddress(add, cb) {
 //   const encodedAddress = encodeURIComponent(add);
@@ -35,10 +35,10 @@ function geocodeAddress(add) {
       },
       (error, response, body) => {
         if (error) {
-          reject(new Error("Unable to connect to Api Server."));
-        } else if (body.status === "ZERO_RESULTS") {
-          reject(new Error("Entered Address is not valid"));
-        } else if (body.status === "OK") {
+          reject(new Error('Unable to connect to Api Server.'));
+        } else if (body.status === 'ZERO_RESULTS') {
+          reject(new Error('Entered Address is not valid'));
+        } else if (body.status === 'OK') {
           // console.log(JSON.stringify(body, undefined, 2));
 
           resolve({

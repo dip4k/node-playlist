@@ -1,16 +1,16 @@
-const fs = require("fs");
+const fs = require('fs');
 
-var originalNote = {
-  title: "some title",
-  body: "body content"
+let originalNote = {
+  title: 'some title',
+  body: 'body content'
 };
 
-var originalNoteString = JSON.stringify(originalNote);
-fs.writeFileSync("notes.json", originalNoteString);
+let originalNoteString = JSON.stringify(originalNote);
+fs.writeFileSync('notes.json', originalNoteString);
 
-var noteString = fs.readFileSync("notes.json");
+let noteString = fs.readFileSync('notes.json');
 
-var note = JSON.parse(noteString);
+let note = JSON.parse(noteString);
 
 console.log(typeof note);
 console.log(note.title);
