@@ -8,6 +8,8 @@
     > You can think of [expect](https://github.com/mjackson/expect 'Expect github') as a more compact alternative to Chai or Sinon.JS, just without the pretty website.
 3.  Supertest - HTTP assertions made easy via superagent.
     > The motivation with [this](https://github.com/visionmedia/supertest) module is to provide a high-level abstraction for testing HTTP, while still allowing you to drop down to the lower-level API provided by superagent.
+4.  Rewire - Easy monkey-patching for node.js unit tests
+    > [Rewire](https://github.com/jhnns/rewire) adds a special setter and getter to modules so you can modify their behaviour for better unit testing.
 
 ## Guides/tutorials for testing
 
