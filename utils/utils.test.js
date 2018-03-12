@@ -1,7 +1,8 @@
-const expect = require("expect");
-const utils = require("./utils");
+const expect = require('expect');
+const utils = require('./utils');
 
-it("should add two numbers", () => {
+/* eslint no-undef:0 */
+it('should add two numbers', () => {
   const res = utils.add(10, 23);
 
   // if (res !== 33) {
@@ -9,26 +10,30 @@ it("should add two numbers", () => {
 
   expect(res)
     .toBe(33)
-    .toBeA("number");
+    .toBeA('number');
 });
 
-it("should add two numbers asyn", done => {
+it('should add two numbers asyn', done => {
   utils.asyncAdd(4, 3, sum => {
-    expect(sum).toBe(7);
+    expect(sum)
+      .toBe(7)
+      .toBeA('number');
     done();
   });
 });
 
-it("should square a number", () => {
+it('should square a number', () => {
   const res = utils.sqr(5);
-  expect(res).toBe(25);
+  expect(res)
+    .toBe(25)
+    .toBeA('number');
 
   // if (res !== 25) {
   //   throw new Error(`Expected (sqr of 5) 25 but got ${res}`);
   // }
 });
 
-it("should square a number asyn", done => {
+it('should square a number async', done => {
   utils.asyncSqr(4, sum => {
     expect(sum).toBe(16);
     done();
@@ -42,10 +47,10 @@ it("should square a number asyn", done => {
 //   // expect({ name: "dc", age: 24, add: "pune" }).toInclude({ age: 24 });
 // });
 
-it("should verify firstName and lastName are set", () => {
-  const res = utils.user("dipak chauhan");
+it('should verify firstName and lastName are set', () => {
+  const res = utils.user('dipak chauhan');
 
   // expect(res).toEqual({ fName: "dipak", lName: "chauhan" });
 
-  expect(res).toInclude({ fName: "dipak", lName: "chauhan" });
+  expect(res).toInclude({ fName: 'dipak', lName: 'chauhan' });
 });
