@@ -1,7 +1,7 @@
 {
   "name": "node-playlist",
   "version": "1.0.0",
-  "description": "",
+  "description": "Node testing using mocha Example",
   "main": "index.js",
   "scripts": {
     "start": "node ./server/server.js",
@@ -12,8 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/dip4k/node-playlist.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["node", "mocha", "testing"],
+  "author": "https://github.com/dip4k",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dip4k/node-playlist/issues"
