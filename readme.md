@@ -6,6 +6,8 @@
     > [mocha](https://mochajs.org/ 'Mocha js site') is a feature-rich JavaScript test framework running on Node.js and in the browser, making asynchronous testing simple and fun.
 2.  Expect
     > You can think of [expect](https://github.com/mjackson/expect 'Expect github') as a more compact alternative to Chai or Sinon.JS, just without the pretty website.
+3.  Supertest
+    > The motivation with [this](https://github.com/visionmedia/supertest) module is to provide a high-level abstraction for testing HTTP, while still allowing you to drop down to the lower-level API provided by superagent.
 
 ## Guides/tutorials for testing
 
