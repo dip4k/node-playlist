@@ -2,7 +2,7 @@
 
 ## Introduction of [MongoDB native](https://github.com/mongodb/node-mongodb-native) in Node.js
 
-### Official Docs
+### Docs and guide for using mongodb in node.js
 
 1.  [Mongodb Node JS driver Documentation](http://mongodb.github.io/node-mongodb-native/3.0/)
 2.  [Using Mongodb with node application stack tutorial](https://www.mongodb.com/blog/post/the-modern-application-stack-part-2-using-mongodb-with-nodejs)
