@@ -25,7 +25,7 @@ app.post('/todos', (req, res) => {
   let todo = new Todo({ text: req.body.text });
   todo.save().then(
     doc => {
-      res.status(201).json(doc);
+      res.status(201).send(doc);
     },
     err => {
       res.status(400).send(err);
@@ -36,8 +36,8 @@ app.post('/todos', (req, res) => {
 // get all todos
 app.get('/todos', (req, res) => {
   Todo.find().then(
-    list => {
-      res.json(list);
+    todos => {
+      res.status(200).send({ todos });
     },
     err => {
       res.status(400).send(err);

@@ -7,13 +7,20 @@ const Todo = require('../models/todoModel');
 
 const request = supertest(app);
 
+// seed data
+let todos = [{ text: 'First test todo' }, { text: 'Second test todo' }];
+
 beforeEach(done => {
-  Todo.remove({}).then(() => done());
+  Todo.remove({})
+    .then(() => {
+      Todo.insertMany(todos);
+    })
+    .then(() => done());
 });
 
 /* eslint no-undef:0 */
 describe('Server Tests', () => {
-  describe('POST todos', () => {
+  describe('POST /todos', () => {
     it('should create a new todo', done => {
       let text = 'to do from server.test.js';
 
@@ -28,7 +35,9 @@ describe('Server Tests', () => {
           if (err) {
             return done(err);
           }
-          Todo.find()
+
+          /* eslint no-shadow:0 */
+          Todo.find({ text })
             .then(todos => {
               expect(todos.length).toBe(1);
               expect(todos[0].text).toBe(text);
@@ -51,13 +60,25 @@ describe('Server Tests', () => {
           }
           Todo.find()
             .then(todos => {
-              expect(todos.length).toBe(0);
+              expect(todos.length).toBe(2);
               done();
             })
             .catch(e => {
               done(e);
             });
         });
+    });
+  });
+
+  describe('Get /todos', () => {
+    it('should return all todos', done => {
+      request
+        .get('/todos')
+        .expect(200)
+        .expect(res => {
+          expect(res.body.todos.length).toBe(2);
+        })
+        .end(done());
     });
   });
 });
