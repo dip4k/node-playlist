@@ -56,6 +56,19 @@ MongoClient.connect(url, (err, client) => {
     }
   );
 
+  // delete user
+  db
+    .collection('Users')
+    .deleteMany({ name: 'Deepak' })
+    .then(
+      res => {
+        console.log(JSON.stringify(res, undefined, 2));
+      },
+      err => {
+        console.log('error', err);
+      }
+    );
+
   // close connection when done
   client.close();
 });
