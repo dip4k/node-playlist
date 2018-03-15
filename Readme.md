@@ -12,3 +12,19 @@
 ### MongoDB Specific
 
 1.  [MongoDB Update Operators](https://docs.mongodb.com/manual/reference/operator/update/)
+
+## Introduction of [Mongoose](https://github.com/Automattic/mongoose) in Node.js
+
+### Docs and guide for using mongoose v5 in node.js
+
+1.  [Mongoose Guide](http://mongoosejs.com/docs/index.html)
+2.  [MDN mongoose guide](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose)
+
+### Mongoose specific
+
+1.  [Mongoose validation](http://mongoosejs.com/docs/validation.html)
+2.  [npm - mongoose-validator](https://github.com/leepowellcouk/mongoose-validator)
+
+## Api Specific
+
+1.  [Http Status Codes](https://httpstatuses.com/) - List of Http codes, useful for using in api application when sending response from server.
