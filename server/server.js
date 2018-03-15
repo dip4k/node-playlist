@@ -25,7 +25,7 @@ app.post('/todos', (req, res) => {
   let todo = new Todo({ text: req.body.text });
   todo.save().then(
     doc => {
-      res.json(doc);
+      res.status(201).json(doc);
     },
     err => {
       res.status(400).send(err);
@@ -49,3 +49,5 @@ app.get('/todos', (req, res) => {
 app.listen(port, () => {
   console.log(`server started on port: ${port}`);
 });
+
+module.exports = { app };
