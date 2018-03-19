@@ -2,11 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { ObjectID } = require('mongodb');
 // import mongoose conn
-const { mongoose } = require('../db/mongoose');
+const { mongoose } = require('./db/mongoose');
 
 // model should always come after mongoose connection
-const Todo = require('../models/todoModel');
-const User = require('../models/UserModel');
+const { Todo } = require('./models/todoModel');
+const { User } = require('./models/UserModel');
 
 // Port
 const port = 3000;
@@ -46,19 +46,20 @@ app.get('/todos', (req, res) => {
 
 // get todo by id
 app.get('/todos/:id', (req, res) => {
-  if (!ObjectID.isValid(req.params.id)) {
+  const id = req.params.id;
+  if (!ObjectID.isValid(id)) {
     res.status(404);
     return res.send({ message: 'Invalid ObjectID' });
   }
   Todo.findById(req.params.id)
     .then(todo => {
       if (!todo) {
-        res.status(404).send({ message: `no todo item exist with ${req.params.id}` });
+        res.status(404).send({ message: `no todo item exist with $id}` });
       }
       res.status(200).send({ todo });
     })
-    .catch(err => {
-      res.status(400).send(err);
+    .catch(() => {
+      res.status(400).send();
     });
 });
 
