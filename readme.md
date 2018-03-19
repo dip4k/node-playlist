@@ -10,6 +10,7 @@
     > The motivation with [this](https://github.com/visionmedia/supertest) module is to provide a high-level abstraction for testing HTTP, while still allowing you to drop down to the lower-level API provided by superagent.
 4.  Rewire - Easy monkey-patching for node.js unit tests
     > [Rewire](https://github.com/jhnns/rewire) adds a special setter and getter to modules so you can modify their behaviour for better unit testing.
+5.  SinonJS - [It](https://github.com/sinonjs/sinon) is Standalone test spies, stubs and mocks for JavaScript. Works with any unit testing framework.
 
 ## Guides/tutorials for testing
 
