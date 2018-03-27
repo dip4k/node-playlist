@@ -102,7 +102,7 @@ app.patch('/todos/:id', (req, res) => {
       if (!updatedTodo) {
         return res.status(404).send({ err_msg: 'No todo present with this id' });
       }
-      res.status(200).send({ updatedTodo });
+      res.status(200).send({ todo: updatedTodo });
     })
     .catch((e) => {
       res.status(400).send({ err_msg: e });
