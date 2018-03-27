@@ -17,7 +17,7 @@ const todos = [
   }
 ];
 
-beforeEach(done => {
+beforeEach((done) => {
   Todo.remove({})
     .then(() => {
       Todo.insertMany(todos);
@@ -27,13 +27,13 @@ beforeEach(done => {
 
 /* eslint no-shadow:0 */
 describe('POST /todos', () => {
-  it('should create a new todo', done => {
+  it('should create a new todo', (done) => {
     let text = 'Test todo text';
     request(app)
       .post('/todos')
       .send({ text })
       .expect(201)
-      .expect(res => {
+      .expect((res) => {
         expect(res.body.text).toBe(text);
       })
       .end((err, res) => {
@@ -41,16 +41,16 @@ describe('POST /todos', () => {
           return done(err);
         }
         Todo.find({ text })
-          .then(todos => {
+          .then((todos) => {
             expect(todos.length).toBe(1);
             expect(todos[0].text).toBe(text);
             done();
           })
-          .catch(e => done(e));
+          .catch((e) => done(e));
       });
   });
 
-  it('should not create todo with invalid body data', done => {
+  it('should not create todo with invalid body data', (done) => {
     request(app)
       .post('/todos')
       .send({})
@@ -61,21 +61,21 @@ describe('POST /todos', () => {
         }
 
         Todo.find()
-          .then(todos => {
+          .then((todos) => {
             expect(todos.length).toBe(2);
             done();
           })
-          .catch(e => done(e));
+          .catch((e) => done(e));
       });
   });
 });
 
 describe('GET /todos', () => {
-  it('should get all todos', done => {
+  it('should get all todos', (done) => {
     request(app)
       .get('/todos')
       .expect(200)
-      .expect(res => {
+      .expect((res) => {
         expect(res.body.todos.length).toBe(2);
       })
       .end(done);
@@ -84,17 +84,17 @@ describe('GET /todos', () => {
 
 /* eslint no-underscore-dangle:0 */
 describe('GET /todos/:id', () => {
-  it('should return todo doc', done => {
+  it('should return todo doc', (done) => {
     request(app)
       .get(`/todos/${todos[0]._id.toHexString()}`)
       .expect(200)
-      .expect(res => {
+      .expect((res) => {
         expect(res.body.todo.text).toBe(todos[0].text);
       })
       .end(done);
   });
 
-  it('should return 404 if todo not found', done => {
+  it('should return 404 if todo not found', (done) => {
     let hexId = new ObjectID().toHexString();
 
     request(app)
@@ -103,7 +103,7 @@ describe('GET /todos/:id', () => {
       .end(done);
   });
 
-  it('should return 404 for non-object ids', done => {
+  it('should return 404 for non-object ids', (done) => {
     request(app)
       .get('/todos/123abc')
       .expect(404)
@@ -112,12 +112,12 @@ describe('GET /todos/:id', () => {
 });
 
 describe('DELETE /todos/:id', () => {
-  it('should remove a todo', done => {
+  it('should remove a todo', (done) => {
     const hexId = todos[1]._id.toHexString();
     request(app)
       .delete(`/todos/${hexId}`)
       .expect(200)
-      .expect(res => {
+      .expect((res) => {
         expect(res.body.todo._id).toBe(hexId);
       })
       .end((err, res) => {
@@ -125,18 +125,18 @@ describe('DELETE /todos/:id', () => {
           return done(err);
         }
         Todo.findById(hexId)
-          .then(todo => {
+          .then((todo) => {
             // expect(todo).toNotExist();
             expect(todo).toEqual(null);
             done();
           })
-          .catch(e => {
+          .catch((e) => {
             done(e);
           });
       });
   });
 
-  it('should return 404 if todo not found', done => {
+  it('should return 404 if todo not found', (done) => {
     let hexId = new ObjectID().toHexString();
 
     request(app)
@@ -145,7 +145,7 @@ describe('DELETE /todos/:id', () => {
       .end(done);
   });
 
-  it('should return 404 when id is invalid', done => {
+  it('should return 404 when id is invalid', (done) => {
     request(app)
       .get('/todos/123abc')
       .expect(404)
