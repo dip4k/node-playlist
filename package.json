@@ -6,18 +6,15 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon --exec \"npm start\"",
-    "test": "mocha \"./{,!(node_modules)/**/}*.test.js\"",
+    "test":
+      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha \"./{,!(node_modules)/**/}*.test.js\"",
     "test-watch": "nodemon --exec \"npm test\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dip4k/node-playlist.git"
   },
-  "keywords": [
-    "node",
-    "mongoose",
-    "express-api"
-  ],
+  "keywords": ["node", "mongoose", "express-api"],
   "author": "Deepak Chauhan",
   "license": "MIT",
   "bugs": {
