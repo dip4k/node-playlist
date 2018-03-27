@@ -13,7 +13,11 @@
     "type": "git",
     "url": "git+https://github.com/dip4k/node-playlist.git"
   },
-  "keywords": ["node", "mongoose", "express-api"],
+  "keywords": [
+    "node",
+    "mongoose",
+    "express-api"
+  ],
   "author": "Deepak Chauhan",
   "license": "MIT",
   "bugs": {
@@ -24,12 +28,12 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "lodash": "^4.17.5",
-    "mongodb": "^3.0.4",
-    "mongoose": "^5.0.10"
+    "mongodb": "^3.0.5",
+    "mongoose": "^5.0.11"
   },
   "devDependencies": {
-    "expect": "^22.4.0",
-    "mocha": "^5.0.4",
+    "expect": "^22.4.3",
+    "mocha": "^5.0.5",
     "nodemon": "^1.17.2",
     "supertest": "^3.0.0"
   }
