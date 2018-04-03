@@ -32,3 +32,11 @@
 ## Api Specific
 
 1.  [Http Status Codes](https://httpstatuses.com/) - List of Http codes, useful for using in api application when sending response from server.
+
+## Authentication and authorization
+
+1.  Moongoose model validations
+    * [custom validation api](http://mongoosejs.com/docs/validation.html)
+    * [validator.js](https://github.com/chriso/validator.js)
+2.  [crypto-js](https://github.com/brix/crypto-js) - JavaScript library of crypto standards.
+3.  [JsonWebTokens](https://github.com/auth0/node-jsonwebtoken) - An implementation of JSON Web Tokens.
