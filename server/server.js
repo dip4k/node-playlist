@@ -23,6 +23,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const { authenticate } = require('./middleware/authenticate');
+
 // --- handling requests
 // todos route
 app.use('/todos', todosRoutes);
@@ -41,6 +43,9 @@ app.post('/users', (req, res, next) => {
     });
 });
 
+app.get('/users/me', authenticate, (req, res, next) => {
+  res.send(req.user);
+});
 // --- start server
 app.listen(port, () => {
   console.log(`server started on port: ${port}`);
