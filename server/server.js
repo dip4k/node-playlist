@@ -34,7 +34,7 @@ app.post('/users', (req, res, next) => {
   user
     .generateAuthTokens()
     .then((token) => {
-      res.header('x-auth', token).send(user.toJSON());
+      res.header('x-auth', token).send(user);
     })
     .catch((e) => {
       res.status(400).send(e);

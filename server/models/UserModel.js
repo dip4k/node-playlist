@@ -50,12 +50,15 @@ userSchema.methods.generateAuthTokens = function() {
     .sign({ _id: user._id.toHexString(), access }, keys.authSecret)
     .toString();
   user.tokens.push({ access, token });
-  console.log(user);
+  // console.log(user);
   return user.save().then(() => token);
 };
 
+// overriding default toJSON method.
 userSchema.methods.toJSON = function() {
   let user = this;
+
+  // convert model to object only props remain in object
   let userObject = user.toObject();
 
   return _.pick(userObject, ['_id', 'email']);
