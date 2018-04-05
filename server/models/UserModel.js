@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = require('mongoose').Schema;
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 const keys = require('../../config/keys');
 
@@ -49,6 +50,8 @@ userSchema.methods.generateAuthTokens = function() {
   let token = jwt
     .sign({ _id: user._id.toHexString(), access }, keys.authSecret)
     .toString();
+  // user.tokens = [];
+  user.tokens.splice(0);
   user.tokens.push({ access, token });
   // console.log(user);
   return user.save().then(() => token);
@@ -58,7 +61,7 @@ userSchema.methods.generateAuthTokens = function() {
 userSchema.methods.toJSON = function() {
   let user = this;
 
-  // convert model to object only props remain in object
+  // convert model to object, only props remain in object
   let userObject = user.toObject();
 
   return _.pick(userObject, ['_id', 'email']);
@@ -77,6 +80,43 @@ userSchema.statics.findByToken = function(token) {
     _id: decoded._id,
     'tokens.token': token,
     'tokens.access': 'auth'
+  });
+};
+
+/* eslint no-shadow:0 handle-callback-err:0 */
+userSchema.pre('save', function(next) {
+  let user = this;
+
+  if (user.isModified('password')) {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(user.password, salt, (error, hash) => {
+        user.password = hash;
+        return next();
+      });
+    });
+  } else {
+    next();
+  }
+});
+
+userSchema.statics.findByCredentials = function(email, password) {
+  let User = this;
+
+  return User.findOne({ email }).then((user) => {
+    if (!user) {
+      return Promise.reject(Error('Wrong username'));
+    }
+
+    return new Promise((resolve, reject) => {
+      // Use bcrypt.compare to compare password and user.password
+      bcrypt.compare(password, user.password, (err, res) => {
+        if (res) {
+          resolve(user);
+        } else {
+          reject(Error('Password do not match'));
+        }
+      });
+    });
   });
 };
 

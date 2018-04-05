@@ -39,13 +39,34 @@ app.post('/users', (req, res, next) => {
       res.header('x-auth', token).send(user);
     })
     .catch((e) => {
-      res.status(400).send(e);
+      res.status(400).send({ errmsg: e.errmsg });
     });
 });
 
 app.get('/users/me', authenticate, (req, res, next) => {
   res.send(req.user);
 });
+
+// POST /users/login {email, password}
+app.post('/users/login', (req, res) => {
+  let body = _.pick(req.body, ['email', 'password']);
+  User.findByCredentials(body.email, body.password)
+    .then((user) => {
+      // console.log(JSON.stringify(user.tokens, undefined, 2));
+      user.generateAuthTokens().then((token) => {
+        // console.log(token);
+        res
+          .header('x-auth', token)
+          .status(200)
+          .send(user);
+      });
+    })
+    .catch((err) => {
+      console.log(err.message);
+      res.status(400).json({ error: err.message });
+    });
+});
+
 // --- start server
 app.listen(port, () => {
   console.log(`server started on port: ${port}`);
