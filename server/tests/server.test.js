@@ -34,7 +34,9 @@ describe('POST /todos', () => {
             expect(todos[0].text).toBe(text);
             done();
           })
-          .catch((e) => done(e));
+          .catch((e) => {
+            done(e);
+          });
       });
   });
 
@@ -48,13 +50,15 @@ describe('POST /todos', () => {
         if (err) {
           return done(err);
         }
-
+        /* eslint no-shadow:0 */
         Todo.find()
           .then((todos) => {
             expect(todos.length).toBe(2);
             done();
           })
-          .catch((e) => done(e));
+          .catch((e) => {
+            done(e);
+          });
       });
   });
 });
@@ -71,7 +75,7 @@ describe('GET /todos', () => {
       .end(done);
   });
 });
-
+/* eslint no-underscore-dangle:0 */
 describe('GET /todos/:id', () => {
   it('should return todo doc', (done) => {
     request(app)
@@ -132,7 +136,9 @@ describe('DELETE /todos/:id', () => {
             expect(todo).toNotExist();
             done();
           })
-          .catch((e) => done(e));
+          .catch((e) => {
+            done(e);
+          });
       });
   });
 
@@ -153,7 +159,9 @@ describe('DELETE /todos/:id', () => {
             expect(todo).toExist();
             done();
           })
-          .catch((e) => done(e));
+          .catch((e) => {
+            done(e);
+          });
       });
   });
 
