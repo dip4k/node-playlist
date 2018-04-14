@@ -69,7 +69,11 @@ userSchema.methods.toJSON = function() {
 
 userSchema.methods.removeToken = function(token) {
   let user = this;
-  return user.update({ $pull: { tokens: { token } } });
+  return user.update({
+    $pull: {
+      tokens: { token }
+    }
+  });
 };
 
 // model method
