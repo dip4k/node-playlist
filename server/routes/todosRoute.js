@@ -2,10 +2,15 @@ const router = require('express').Router();
 const _ = require('lodash');
 const { ObjectID } = require('mongodb');
 const { Todo } = require('../models/todoModel');
-
+const { authenticate } = require('../middleware/authenticate');
+/* eslint no-underscore-dangle:0 */
 // create todo
-router.post('/', (req, res) => {
-  let todo = new Todo({ text: req.body.text });
+router.post('/', authenticate, (req, res) => {
+  let todo = new Todo({
+    text: req.body.text,
+    _creator: req.user._id
+  });
+
   todo
     .save()
     .then((doc) => {
@@ -17,8 +22,8 @@ router.post('/', (req, res) => {
 });
 
 // get all todos
-router.get('/', (req, res) => {
-  Todo.find()
+router.get('/', authenticate, (req, res) => {
+  Todo.find({ _creator: req.user._id })
     .then((todos) => {
       res.status(200).send({ todos });
     })
@@ -28,13 +33,16 @@ router.get('/', (req, res) => {
 });
 
 // get todo by id
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
   const id = req.params.id;
   if (!ObjectID.isValid(id)) {
     res.status(404);
     return res.send({ message: 'Invalid ObjectID' });
   }
-  Todo.findById(id)
+  Todo.findOne({
+    _id: id,
+    _creator: req.user._id
+  })
     .then((todo) => {
       if (!todo) {
         res.status(404).send({ message: `no todo item exist with id : $id}` });
@@ -47,12 +55,15 @@ router.get('/:id', (req, res) => {
 });
 
 // delete todo by id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authenticate, (req, res) => {
   const id = req.params.id;
   if (!ObjectID.isValid(id)) {
     return res.status(404).send({ err_msg: 'Invalid id' });
   }
-  Todo.findByIdAndRemove(id)
+  Todo.findOneAndRemove({
+    _id: id,
+    _creator: req.user._id
+  })
     .then((todo) => {
       if (!todo) {
         return res.status(404).send({ message: `no todo item exist with id: ${id}` });
@@ -65,7 +76,7 @@ router.delete('/:id', (req, res) => {
 });
 
 // Update todo
-router.patch('/:id', (req, res) => {
+router.patch('/:id', authenticate, (req, res) => {
   let id = req.params.id;
   let body = _.pick(req.body, ['text', 'completed']);
 
@@ -79,7 +90,11 @@ router.patch('/:id', (req, res) => {
     body.completedAt = null;
   }
 
-  Todo.findByIdAndUpdate(id, { $set: body }, { new: true, runValidators: true })
+  Todo.findOneAndUpdate(
+    { _id: id, _creator: req.user._id },
+    { $set: body },
+    { new: true }
+  )
     .then((updatedTodo) => {
       if (!updatedTodo) {
         return res.status(404).send({ err_msg: 'No todo present with this id' });

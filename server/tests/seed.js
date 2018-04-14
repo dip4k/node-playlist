@@ -1,12 +1,11 @@
 const { ObjectID } = require('mongodb');
 const jwt = require('jsonwebtoken');
 
-const { Todo } = require('../models/todoModel');
-const { User } = require('../models/UserModel');
-
+const { Todo } = require('./../models/todoModel');
+const { User } = require('./../models/UserModel');
+/* eslint array-element-newline:0 */
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
-/* eslint array-element-newline:0 */
 const users = [
   {
     _id: userOneId,
@@ -22,29 +21,35 @@ const users = [
   {
     _id: userTwoId,
     email: 'jen@example.com',
-    password: 'userTwoPass'
+    password: 'userTwoPass',
+    tokens: [
+      {
+        access: 'auth',
+        token: jwt.sign({ _id: userTwoId, access: 'auth' }, 'abc123').toString()
+      }
+    ]
   }
 ];
 
 const todos = [
   {
     _id: new ObjectID(),
-    text: 'First test todo'
+    text: 'First test todo',
+    _creator: userOneId
   },
   {
     _id: new ObjectID(),
     text: 'Second test todo',
     completed: true,
-    completedAt: 333
+    completedAt: 333,
+    _creator: userTwoId
   }
 ];
 
 const populateTodos = (done) => {
   Todo.remove({})
-    .then(() => {
-      Todo.insertMany(todos);
-    })
-    .then(done());
+    .then(() => Todo.insertMany(todos))
+    .then(() => done());
 };
 
 const populateUsers = (done) => {
@@ -55,7 +60,7 @@ const populateUsers = (done) => {
 
       return Promise.all([userOne, userTwo]);
     })
-    .then(done());
+    .then(() => done());
 };
 
 module.exports = { todos, populateTodos, users, populateUsers };
